@@ -96,4 +96,18 @@ HAVING
     AVG(ia.frequencia) >= 90
 ORDER BY
     curso_nome, aluno_nome;
+    
+#11
+USE EduPlus;
+SELECT cursos.nome AS 'Nome do curso', instrutor.nome AS 'Instrutor responsável'
+FROM cursos INNER JOIN instrutor ON instrutor.matricula = cursos.instrutorResponsavel;
+
+
+#12
+USE EduPlus;
+SELECT alunos.nome, cursos.nome FROM alunos
+INNER JOIN cursoAlunos ON alunos.matricula =  cursoAlunos.matricula
+INNER JOIN cursos ON cursos.idCurso = cursoAlunos.idCurso
+ORDER BY alunos.matricula;
+
 

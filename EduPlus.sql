@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 02/12/2024 às 00:05
+-- Tempo de geração: 02/12/2024 às 18:14
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -147,18 +147,19 @@ CREATE TABLE `cursos` (
   `cargaHoraria` int(11) NOT NULL,
   `qtdModulos` int(11) NOT NULL,
   `dataLancamento` date NOT NULL,
-  `ativo` tinyint(1) DEFAULT NULL
+  `ativo` tinyint(1) DEFAULT NULL,
+  `instrutorResponsavel` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `cursos`
 --
 
-INSERT INTO `cursos` (`idCurso`, `nome`, `descricao`, `cargaHoraria`, `qtdModulos`, `dataLancamento`, `ativo`) VALUES
-(1, 'Programação em Linguagem C', 'Curso completo sobre os fundamentos da linguagem C, incluindo controle de fluxo, funções e manipulação de memória.', 60, 11, '2023-05-10', 1),
-(2, 'League of Legends', 'Como jogar lol sem ferir os direitos humanos', 40, 5, '2024-11-30', 1),
-(3, 'Python Descomplicado: Do Básico ao Avançado', 'Nesse curso você vai aprender desde os conceitos mais simples até os mais avançados de Python.', 50, 5, '2021-08-05', 0),
-(4, 'Curso básico de MySQL', 'Com este curso, vamos aprender a utilizar um dos principais banco de dados do mercado: o mysql.', 32, 4, '2022-02-28', 1);
+INSERT INTO `cursos` (`idCurso`, `nome`, `descricao`, `cargaHoraria`, `qtdModulos`, `dataLancamento`, `ativo`, `instrutorResponsavel`) VALUES
+(1, 'Programação em Linguagem C', 'Curso completo sobre os fundamentos da linguagem C, incluindo controle de fluxo, funções e manipulação de memória.', 60, 11, '2023-05-10', 1, 'A12345'),
+(2, 'League of Legends', 'Como jogar lol sem ferir os direitos humanos', 40, 5, '2024-11-30', 1, 'C11223'),
+(3, 'Python Descomplicado: Do Básico ao Avançado', 'Nesse curso você vai aprender desde os conceitos mais simples até os mais avançados de Python.', 50, 5, '2021-08-05', 0, 'D44556'),
+(4, 'Curso básico de MySQL', 'Com este curso, vamos aprender a utilizar um dos principais banco de dados do mercado: o mysql.', 32, 4, '2022-02-28', 1, 'F23456');
 
 -- --------------------------------------------------------
 
@@ -366,7 +367,8 @@ ALTER TABLE `cursoModulos`
 -- Índices de tabela `cursos`
 --
 ALTER TABLE `cursos`
-  ADD PRIMARY KEY (`idCurso`);
+  ADD PRIMARY KEY (`idCurso`),
+  ADD KEY `instrutorResponsavel` (`instrutorResponsavel`);
 
 --
 -- Índices de tabela `infoAlunos`
@@ -440,6 +442,12 @@ ALTER TABLE `cursoAlunos`
 ALTER TABLE `cursoModulos`
   ADD CONSTRAINT `cursoModulos_ibfk_1` FOREIGN KEY (`idModulo`) REFERENCES `modulo` (`idModulo`),
   ADD CONSTRAINT `cursoModulos_ibfk_2` FOREIGN KEY (`idCurso`) REFERENCES `cursos` (`idCurso`);
+
+--
+-- Restrições para tabelas `cursos`
+--
+ALTER TABLE `cursos`
+  ADD CONSTRAINT `cursos_ibfk_1` FOREIGN KEY (`instrutorResponsavel`) REFERENCES `instrutor` (`matricula`);
 
 --
 -- Restrições para tabelas `infoAlunos`
