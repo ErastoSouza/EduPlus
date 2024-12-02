@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 30/11/2024 às 20:49
+-- Tempo de geração: 02/12/2024 às 18:14
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `EduPlus`
 --
+CREATE DATABASE IF NOT EXISTS `EduPlus` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `EduPlus`;
 
 -- --------------------------------------------------------
 
@@ -87,7 +89,8 @@ INSERT INTO `cursoAlunos` (`id`, `matricula`, `idCurso`) VALUES
 (6, 'A10005', 2),
 (7, 'A10019', 2),
 (8, 'A10021', 2),
-(9, 'A10007', 2);
+(9, 'A10007', 2),
+(10, 'A10021', 3);
 
 -- --------------------------------------------------------
 
@@ -120,7 +123,16 @@ INSERT INTO `cursoModulos` (`id`, `idModulo`, `idCurso`) VALUES
 (13, 13, 2),
 (14, 14, 2),
 (15, 15, 2),
-(16, 16, 2);
+(16, 16, 2),
+(17, 17, 3),
+(18, 18, 3),
+(19, 19, 3),
+(20, 20, 3),
+(21, 21, 3),
+(22, 22, 4),
+(23, 23, 4),
+(24, 24, 4),
+(25, 25, 4);
 
 -- --------------------------------------------------------
 
@@ -134,16 +146,20 @@ CREATE TABLE `cursos` (
   `descricao` text DEFAULT NULL,
   `cargaHoraria` int(11) NOT NULL,
   `qtdModulos` int(11) NOT NULL,
-  `dataLancamento` date NOT NULL
+  `dataLancamento` date NOT NULL,
+  `ativo` tinyint(1) DEFAULT NULL,
+  `instrutorResponsavel` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `cursos`
 --
 
-INSERT INTO `cursos` (`idCurso`, `nome`, `descricao`, `cargaHoraria`, `qtdModulos`, `dataLancamento`) VALUES
-(1, 'Programação em Linguagem C', 'Curso completo sobre os fundamentos da linguagem C, incluindo controle de fluxo, funções e manipulação de memória.', 60, 11, '2023-05-10'),
-(2, 'League of Legends', 'Como jogar lol sem ferir os direitos humanos', 40, 5, '2024-11-30');
+INSERT INTO `cursos` (`idCurso`, `nome`, `descricao`, `cargaHoraria`, `qtdModulos`, `dataLancamento`, `ativo`, `instrutorResponsavel`) VALUES
+(1, 'Programação em Linguagem C', 'Curso completo sobre os fundamentos da linguagem C, incluindo controle de fluxo, funções e manipulação de memória.', 60, 11, '2023-05-10', 1, 'A12345'),
+(2, 'League of Legends', 'Como jogar lol sem ferir os direitos humanos', 40, 5, '2024-11-30', 1, 'C11223'),
+(3, 'Python Descomplicado: Do Básico ao Avançado', 'Nesse curso você vai aprender desde os conceitos mais simples até os mais avançados de Python.', 50, 5, '2021-08-05', 0, 'D44556'),
+(4, 'Curso básico de MySQL', 'Com este curso, vamos aprender a utilizar um dos principais banco de dados do mercado: o mysql.', 32, 4, '2022-02-28', 1, 'F23456');
 
 -- --------------------------------------------------------
 
@@ -235,7 +251,11 @@ INSERT INTO `infoAlunos` (`id`, `matricula`, `idModulo`, `nota1`, `nota2`, `nota
 (67, 'A10007', 13, 8.70, 8.50, 8.40, 86.00),
 (68, 'A10007', 14, 9.00, 8.80, 9.00, 93.00),
 (69, 'A10007', 15, 8.00, 7.50, 7.60, 80.00),
-(70, 'A10007', 16, 9.50, 9.20, 9.10, 97.00);
+(70, 'A10007', 16, 9.50, 9.20, 9.10, 97.00),
+(71, 'A10021', 17, 10.00, 9.00, 9.90, 88.00),
+(72, 'A10021', 18, 10.00, 10.00, 10.00, 99.00),
+(73, 'A10021', 19, 9.00, 9.00, 9.00, 98.00),
+(74, 'A10021', 20, 10.00, 7.00, 9.00, 89.00);
 
 -- --------------------------------------------------------
 
@@ -298,7 +318,24 @@ INSERT INTO `modulo` (`idModulo`, `nomeModulo`, `descricao`, `idInstrutor`, `ati
 (13, 'Controle de wave', 'Aprenda a controlar wave', 'C11223', 1),
 (14, 'Como wardar', 'Aprenda a não ficar no escuro', 'B67890', 1),
 (15, 'Trabalho em equipe', 'Como lidar com animais', 'B67890', 1),
-(16, 'Microgame', 'Aprenda a acertar a habilidade', 'C11223', 1);
+(16, 'Microgame', 'Aprenda a acertar a habilidade', 'C11223', 1),
+(17, 'Fundamentos de Python', 'Conceitos básicos de python, como variávies, tipos de dados, operadores e estruturas de controle.', 'A12345', 0),
+(18, 'Manipulação de Dados e Funções', 'Aqui, você mergulhará no uso de listas, dicionários, conjuntos e tuplas, aprendendo a organizar e manipular dados. Também explorará funções personalizadas, parâmetros e o poder da recursão.', 'A12345', 0),
+(19, 'Trabalhando com Arquivos e Bibliotecas', 'Este módulo ensina como trabalhar com arquivos (ler, escrever e manipular), além de introduzir bibliotecas fundamentais como os e datetime.', 'D44556', 0),
+(20, 'Orientação a Objetos em Python', 'Com foco no paradigma de Orientação a Objetos, você aprenderá a criar classes, métodos e objetos.', 'D44556', 0),
+(21, 'Automação, Web e Aplicações Reais', 'Você explorará como usar Python para automação de tarefas, como web scraping com BeautifulSoup e automação de planilhas com openpyxl.', 'D44556', 0),
+(22, 'Introdução e Fundamentos do SQL', 'Este módulo apresenta os conceitos básicos de bancos de dados relacionais e o papel do SQL.', 'F23456', 0),
+(23, 'Consultas Avançadas e Manipulação de Dados', 'Explore funções agregadas como SUM, AVG, COUNT e técnicas para agrupar dados com GROUP BY e HAVING.', 'F23456', 1),
+(24, 'Design de Banco de Dados e Otimização', 'Neste módulo, você aprenderá boas práticas de design de banco de dados, incluindo normalização e criação de índices para melhorar o desempenho.', 'F23456', 1),
+(25, 'Administração de Banco de Dados e Segurança', 'Descubra como gerenciar usuários, configurar permissões e implementar práticas de segurança para proteger seu banco de dados.', 'F23456', 1),
+(26, 'Introdução e Fundamentos do SQL', 'Este módulo apresenta os conceitos básicos de bancos de dados relacionais e o papel do SQL.', 'F23456', 0),
+(27, 'Consultas Avançadas e Manipulação de Dados', 'Explore funções agregadas como SUM, AVG, COUNT e técnicas para agrupar dados com GROUP BY e HAVING.', 'F23456', 1),
+(28, 'Design de Banco de Dados e Otimização', 'Neste módulo, você aprenderá boas práticas de design de banco de dados, incluindo normalização e criação de índices para melhorar o desempenho.', 'F23456', 1),
+(29, 'Administração de Banco de Dados e Segurança', 'Descubra como gerenciar usuários, configurar permissões e implementar práticas de segurança para proteger seu banco de dados.', 'F23456', 1),
+(30, 'Introdução e Fundamentos do SQL', 'Este módulo apresenta os conceitos básicos de bancos de dados relacionais e o papel do SQL.', 'F23456', 0),
+(31, 'Consultas Avançadas e Manipulação de Dados', 'Explore funções agregadas como SUM, AVG, COUNT e técnicas para agrupar dados com GROUP BY e HAVING.', 'F23456', 1),
+(32, 'Design de Banco de Dados e Otimização', 'Neste módulo, você aprenderá boas práticas de design de banco de dados, incluindo normalização e criação de índices para melhorar o desempenho.', 'F23456', 1),
+(33, 'Administração de Banco de Dados', 'Descubra como gerenciar usuários, configurar permissões e implementar práticas de segurança para proteger seu banco de dados.', 'F23456', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -330,7 +367,8 @@ ALTER TABLE `cursoModulos`
 -- Índices de tabela `cursos`
 --
 ALTER TABLE `cursos`
-  ADD PRIMARY KEY (`idCurso`);
+  ADD PRIMARY KEY (`idCurso`),
+  ADD KEY `instrutorResponsavel` (`instrutorResponsavel`);
 
 --
 -- Índices de tabela `infoAlunos`
@@ -361,31 +399,31 @@ ALTER TABLE `modulo`
 -- AUTO_INCREMENT de tabela `cursoAlunos`
 --
 ALTER TABLE `cursoAlunos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `cursoModulos`
 --
 ALTER TABLE `cursoModulos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de tabela `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `idCurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idCurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `infoAlunos`
 --
 ALTER TABLE `infoAlunos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT de tabela `modulo`
 --
 ALTER TABLE `modulo`
-  MODIFY `idModulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idModulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Restrições para tabelas despejadas
@@ -404,6 +442,12 @@ ALTER TABLE `cursoAlunos`
 ALTER TABLE `cursoModulos`
   ADD CONSTRAINT `cursoModulos_ibfk_1` FOREIGN KEY (`idModulo`) REFERENCES `modulo` (`idModulo`),
   ADD CONSTRAINT `cursoModulos_ibfk_2` FOREIGN KEY (`idCurso`) REFERENCES `cursos` (`idCurso`);
+
+--
+-- Restrições para tabelas `cursos`
+--
+ALTER TABLE `cursos`
+  ADD CONSTRAINT `cursos_ibfk_1` FOREIGN KEY (`instrutorResponsavel`) REFERENCES `instrutor` (`matricula`);
 
 --
 -- Restrições para tabelas `infoAlunos`
