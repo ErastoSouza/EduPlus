@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 03/12/2024 às 22:33
+-- Tempo de geração: 03/12/2024 às 23:11
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `EduPlus`
 --
+DROP DATABASE IF EXISTS `EduPlus`;
 CREATE DATABASE IF NOT EXISTS `EduPlus` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `EduPlus`;
 
@@ -148,8 +149,8 @@ CREATE TABLE `cursos` (
   `cargaHoraria` int(11) NOT NULL,
   `qtdModulos` int(11) NOT NULL,
   `dataLancamento` date NOT NULL,
-  `ativo` tinyint(1) DEFAULT NULL,
-  `instrutorResponsavel` varchar(10) DEFAULT NULL
+  `ativo` tinyint(1) NOT NULL,
+  `instrutorResponsavel` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -173,10 +174,10 @@ CREATE TABLE `infoAlunos` (
   `id` int(11) NOT NULL,
   `matricula` varchar(10) NOT NULL,
   `idModulo` int(11) NOT NULL,
-  `nota1` float(4,2) DEFAULT NULL CHECK (`nota1` between 0 and 10),
+  `nota1` float(4,2) DEFAULT NULL,
   `nota2` float(4,2) DEFAULT NULL CHECK (`nota2` between 0 and 10),
   `nota3` float(4,2) DEFAULT NULL CHECK (`nota3` between 0 and 10),
-  `frequencia` float(4,2) DEFAULT NULL CHECK (`frequencia` between 0 and 100)
+  `frequencia` float(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -297,8 +298,8 @@ CREATE TABLE `modulos` (
   `idModulo` int(11) NOT NULL,
   `nomeModulo` varchar(100) NOT NULL,
   `descricao` text DEFAULT NULL,
-  `idInstrutor` varchar(10) DEFAULT NULL,
-  `ativo` tinyint(1) DEFAULT NULL
+  `idInstrutor` varchar(10) NOT NULL,
+  `ativo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
