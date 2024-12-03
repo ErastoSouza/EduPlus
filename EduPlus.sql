@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 02/12/2024 às 18:14
+-- Tempo de geração: 03/12/2024 às 22:33
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -32,7 +32,7 @@ USE `EduPlus`;
 CREATE TABLE `alunos` (
   `matricula` varchar(10) NOT NULL,
   `nome` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL CHECK (`email` like '%@_%'),
+  `email` varchar(50) NOT NULL CHECK (`email` like '%_@%.com'),
   `sexo` enum('M','F') NOT NULL,
   `nascimento` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -62,7 +62,8 @@ INSERT INTO `alunos` (`matricula`, `nome`, `email`, `sexo`, `nascimento`) VALUES
 ('A10018', 'Ana Clara Teixeira', 'ana.clara.teixeira@example.com', 'F', '2002-12-21'),
 ('A10019', 'Felipe Barbosa', 'felipe.barbosa@example.com', 'M', '2001-09-10'),
 ('A10020', 'Luana Nunes', 'luana.nunes@example.com', 'F', '2000-05-02'),
-('A10021', 'Joesley Joestar', 'jojobr@yahoo.com', 'M', '1985-01-01');
+('A10021', 'Joesley Joestar', 'jojobr@yahoo.com', 'M', '1985-01-01'),
+('A10022', 'Yumeko Jabami', 'yumeko.jabami@email.com', 'F', '2002-03-01');
 
 -- --------------------------------------------------------
 
@@ -159,7 +160,8 @@ INSERT INTO `cursos` (`idCurso`, `nome`, `descricao`, `cargaHoraria`, `qtdModulo
 (1, 'Programação em Linguagem C', 'Curso completo sobre os fundamentos da linguagem C, incluindo controle de fluxo, funções e manipulação de memória.', 60, 11, '2023-05-10', 1, 'A12345'),
 (2, 'League of Legends', 'Como jogar lol sem ferir os direitos humanos', 40, 5, '2024-11-30', 1, 'C11223'),
 (3, 'Python Descomplicado: Do Básico ao Avançado', 'Nesse curso você vai aprender desde os conceitos mais simples até os mais avançados de Python.', 50, 5, '2021-08-05', 0, 'D44556'),
-(4, 'Curso básico de MySQL', 'Com este curso, vamos aprender a utilizar um dos principais banco de dados do mercado: o mysql.', 32, 4, '2022-02-28', 1, 'F23456');
+(4, 'Curso básico de MySQL', 'Com este curso, vamos aprender a utilizar um dos principais banco de dados do mercado: o mysql.', 32, 4, '2022-02-28', 1, 'F23456'),
+(5, 'Curso de C#', 'Aprenda a fazer programa com o C#', 36, 4, '2020-04-15', 0, 'E78901');
 
 -- --------------------------------------------------------
 
@@ -171,10 +173,10 @@ CREATE TABLE `infoAlunos` (
   `id` int(11) NOT NULL,
   `matricula` varchar(10) NOT NULL,
   `idModulo` int(11) NOT NULL,
-  `nota1` float(4,2) DEFAULT NULL,
-  `nota2` float(4,2) DEFAULT NULL,
-  `nota3` float(4,2) DEFAULT NULL,
-  `frequencia` float(5,2) DEFAULT NULL
+  `nota1` float(4,2) DEFAULT NULL CHECK (`nota1` between 0 and 10),
+  `nota2` float(4,2) DEFAULT NULL CHECK (`nota2` between 0 and 10),
+  `nota3` float(4,2) DEFAULT NULL CHECK (`nota3` between 0 and 10),
+  `frequencia` float(4,2) DEFAULT NULL CHECK (`frequencia` between 0 and 100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -260,13 +262,13 @@ INSERT INTO `infoAlunos` (`id`, `matricula`, `idModulo`, `nota1`, `nota2`, `nota
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `instrutor`
+-- Estrutura para tabela `instrutores`
 --
 
-CREATE TABLE `instrutor` (
+CREATE TABLE `instrutores` (
   `matricula` varchar(10) NOT NULL,
   `nome` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL CHECK (`email` like '%@_%'),
+  `email` varchar(50) NOT NULL CHECK (`email` like '%_@%.com'),
   `nascimento` date NOT NULL,
   `ingresso` date NOT NULL,
   `sexo` enum('M','F') NOT NULL,
@@ -274,10 +276,10 @@ CREATE TABLE `instrutor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `instrutor`
+-- Despejando dados para a tabela `instrutores`
 --
 
-INSERT INTO `instrutor` (`matricula`, `nome`, `email`, `nascimento`, `ingresso`, `sexo`, `biografia`) VALUES
+INSERT INTO `instrutores` (`matricula`, `nome`, `email`, `nascimento`, `ingresso`, `sexo`, `biografia`) VALUES
 ('A12345', 'João Silva', 'joao.silva@example.com', '1985-06-15', '2020-01-10', 'M', 'Instrutor com mais de 10 anos de experiência em desenvolvimento de software.'),
 ('B67890', 'Maria Oliveira', 'maria.oliveira@example.com', '1990-03-22', '2018-08-01', 'F', 'Especialista em programação competitiva e autora de artigos acadêmicos na área.'),
 ('C11223', 'Carlos Santos', 'carlos.santos@example.com', '1987-11-03', '2021-06-15', 'M', 'Engenheiro de software apaixonado por ensinar e aprender novas tecnologias.'),
@@ -288,10 +290,10 @@ INSERT INTO `instrutor` (`matricula`, `nome`, `email`, `nascimento`, `ingresso`,
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `modulo`
+-- Estrutura para tabela `modulos`
 --
 
-CREATE TABLE `modulo` (
+CREATE TABLE `modulos` (
   `idModulo` int(11) NOT NULL,
   `nomeModulo` varchar(100) NOT NULL,
   `descricao` text DEFAULT NULL,
@@ -300,10 +302,10 @@ CREATE TABLE `modulo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `modulo`
+-- Despejando dados para a tabela `modulos`
 --
 
-INSERT INTO `modulo` (`idModulo`, `nomeModulo`, `descricao`, `idInstrutor`, `ativo`) VALUES
+INSERT INTO `modulos` (`idModulo`, `nomeModulo`, `descricao`, `idInstrutor`, `ativo`) VALUES
 (1, 'Introdução à Programação e à Linguagem C', 'Apresentação da linguagem C, seu histórico e primeiro programa básico.', 'A12345', 0),
 (2, 'Fundamentos da Linguagem', 'Introdução a tipos de dados, variáveis, operadores e funções básicas de entrada e saída.', 'A12345', 0),
 (3, 'Controle de Fluxo', 'Estruturas condicionais e de repetição para controle do programa.', 'A12345', 0),
@@ -379,15 +381,15 @@ ALTER TABLE `infoAlunos`
   ADD KEY `idModulo` (`idModulo`);
 
 --
--- Índices de tabela `instrutor`
+-- Índices de tabela `instrutores`
 --
-ALTER TABLE `instrutor`
+ALTER TABLE `instrutores`
   ADD PRIMARY KEY (`matricula`);
 
 --
--- Índices de tabela `modulo`
+-- Índices de tabela `modulos`
 --
-ALTER TABLE `modulo`
+ALTER TABLE `modulos`
   ADD PRIMARY KEY (`idModulo`),
   ADD KEY `idInstrutor` (`idInstrutor`);
 
@@ -411,7 +413,7 @@ ALTER TABLE `cursoModulos`
 -- AUTO_INCREMENT de tabela `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `idCurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idCurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `infoAlunos`
@@ -420,9 +422,9 @@ ALTER TABLE `infoAlunos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
--- AUTO_INCREMENT de tabela `modulo`
+-- AUTO_INCREMENT de tabela `modulos`
 --
-ALTER TABLE `modulo`
+ALTER TABLE `modulos`
   MODIFY `idModulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
@@ -440,27 +442,27 @@ ALTER TABLE `cursoAlunos`
 -- Restrições para tabelas `cursoModulos`
 --
 ALTER TABLE `cursoModulos`
-  ADD CONSTRAINT `cursoModulos_ibfk_1` FOREIGN KEY (`idModulo`) REFERENCES `modulo` (`idModulo`),
+  ADD CONSTRAINT `cursoModulos_ibfk_1` FOREIGN KEY (`idModulo`) REFERENCES `modulos` (`idModulo`),
   ADD CONSTRAINT `cursoModulos_ibfk_2` FOREIGN KEY (`idCurso`) REFERENCES `cursos` (`idCurso`);
 
 --
 -- Restrições para tabelas `cursos`
 --
 ALTER TABLE `cursos`
-  ADD CONSTRAINT `cursos_ibfk_1` FOREIGN KEY (`instrutorResponsavel`) REFERENCES `instrutor` (`matricula`);
+  ADD CONSTRAINT `cursos_ibfk_1` FOREIGN KEY (`instrutorResponsavel`) REFERENCES `instrutores` (`matricula`);
 
 --
 -- Restrições para tabelas `infoAlunos`
 --
 ALTER TABLE `infoAlunos`
   ADD CONSTRAINT `infoAlunos_ibfk_1` FOREIGN KEY (`matricula`) REFERENCES `alunos` (`matricula`),
-  ADD CONSTRAINT `infoAlunos_ibfk_2` FOREIGN KEY (`idModulo`) REFERENCES `modulo` (`idModulo`);
+  ADD CONSTRAINT `infoAlunos_ibfk_2` FOREIGN KEY (`idModulo`) REFERENCES `modulos` (`idModulo`);
 
 --
--- Restrições para tabelas `modulo`
+-- Restrições para tabelas `modulos`
 --
-ALTER TABLE `modulo`
-  ADD CONSTRAINT `modulo_ibfk_1` FOREIGN KEY (`idInstrutor`) REFERENCES `instrutor` (`matricula`);
+ALTER TABLE `modulos`
+  ADD CONSTRAINT `modulo_ibfk_1` FOREIGN KEY (`idInstrutor`) REFERENCES `instrutores` (`matricula`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
