@@ -13,6 +13,14 @@ FROM cursos
 INNER JOIN cursoAlunos ON cursos.idCurso = cursoAlunos.idCurso
 GROUP BY cursos.idCurso;
 
+#4
+USE EduPlus;
+SELECT alunos.nome, alunos.matricula
+FROM alunos
+INNER JOIN cursoAlunos ON cursoAlunos.matricula = alunos.matricula
+GROUP BY alunos.matricula
+HAVING COUNT(DISTINCT cursoAlunos.idCurso) > 5;
+
 #5
 USE EduPlus;
 SELECT * FROM cursos 
@@ -26,7 +34,8 @@ SELECT
 FROM cursos
 INNER JOIN cursoAlunos ON cursos.idCurso = cursoAlunos.idCurso
 GROUP BY cursos.idCurso
-ORDER BY total_alunos DESC;
+ORDER BY total_alunos DESC
+LIMIT 5;
 
 #7
 USE EduPlus;
