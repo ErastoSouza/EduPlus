@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 04/12/2024 às 17:07
+-- Tempo de geração: 04/12/2024 às 19:27
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -17,6 +17,530 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Banco de dados: `BD-Comercial`
+--
+CREATE DATABASE IF NOT EXISTS `BD-Comercial` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `BD-Comercial`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `comclien`
+--
+
+CREATE TABLE `comclien` (
+  `n_numeclien` int(11) NOT NULL,
+  `c_codiclien` varchar(10) DEFAULT NULL,
+  `c_nomeclien` varchar(100) DEFAULT NULL,
+  `c_razaclien` varchar(100) DEFAULT NULL,
+  `d_dataclien` date DEFAULT NULL,
+  `c_cnpjclien` varchar(20) DEFAULT NULL,
+  `c_foneclien` varchar(20) DEFAULT NULL,
+  `c_cidaclien` varchar(50) DEFAULT NULL,
+  `c_estaclien` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `comclien`
+--
+
+INSERT INTO `comclien` (`n_numeclien`, `c_codiclien`, `c_nomeclien`, `c_razaclien`, `d_dataclien`, `c_cnpjclien`, `c_foneclien`, `c_cidaclien`, `c_estaclien`) VALUES
+(1, '0001', 'AARONSON FURNITURE', 'AARONSON FURNITURE LTDA', '2024-10-16', '17.807.928/0001-85', '(88) 98167-6584', 'CRATO', 'CE'),
+(2, '0002', 'LITTLER ', 'LITTLER  LTDA', '2024-10-17', '55.643.605/0001-92', '(27) 7990-9502', 'SERRA', 'ES'),
+(3, '0003', 'KELSEY  NEIGHBOURHOOD', 'KELSEY  NEIGHBOURHOOD', '2024-10-17', '05.202.361/0001-34', '(11) 4206-9703', 'BRAGANÇA PAULISTA', 'SP'),
+(4, '0004', 'GREAT AMERICAN MUSIC', 'GREAT AMERICAN MUSIC', '2024-10-17', '11.880.735/0001-73', '(75) 7815-7801', 'SANTO ANTÔNIO DE JESUS', 'BA'),
+(5, '0005', 'LIFE PLAN COUNSELLING', 'LIFE PLAN COUNSELLING', '2024-10-17', '75.185.467/0001-52', '(17) 4038-9355', 'BEBEDOURO', 'SP'),
+(6, '0006', 'PRACTI-PLAN', 'PRACTI-PLAN LTDA', '2024-10-17', '32.518.106/0001-78', '(28) 2267-6159', 'CACHOEIRO DE ITAPEMIRI', 'ES'),
+(7, '0007', 'SPORTSWEST', 'SPORTSWEST LTDA', '2024-10-17', '83.175.645/0001-92', '(61) 4094-7184', 'TAGUATINGA', 'DF'),
+(8, '0008', 'HUGHES MARKETS', 'HUGHES MARKETS LTDA', '2024-10-17', '04.728.160/0001-02', '(21) 7984-9809', 'RIO DE JANEIRO', 'RJ'),
+(9, '0009', 'AUTO WORKS', 'AUTO WORKS LTDA', '2024-10-17', '08.271.985/0001-00', '(21) 8548-5555', 'RIO DE JANEIRO', 'RJ'),
+(10, '00010', 'DAHLKEMPER ', 'DAHLKEMPER  LTDA', '2024-10-17', '49.815.047/0001-00', '(11) 4519-7670', 'SÃO PAULO', 'SP');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `comforne`
+--
+
+CREATE TABLE `comforne` (
+  `n_numeforne` int(11) NOT NULL,
+  `c_condiforne` varchar(10) DEFAULT NULL,
+  `c_nomeforne` varchar(100) DEFAULT NULL,
+  `c_razaforne` varchar(100) DEFAULT NULL,
+  `c_foneforne` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `comforne`
+--
+
+INSERT INTO `comforne` (`n_numeforne`, `c_condiforne`, `c_nomeforne`, `c_razaforne`, `c_foneforne`) VALUES
+(1, '0001', 'DUN RITE LAWN MAINTENANCE', 'DUN RITE LAWN MAINTENANCE LTDA', '(85) 7886-8837'),
+(2, '0002', 'SEWFRO FABRICS', 'SEWFRO FABRICS LTDA', '(91) 5171-8483');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `comivenda`
+--
+
+CREATE TABLE `comivenda` (
+  `n_numeivenda` int(11) NOT NULL,
+  `n_numvenda` int(11) NOT NULL,
+  `n_numeprodu` int(11) NOT NULL,
+  `n_valorivenda` float DEFAULT NULL,
+  `n_qtdeivenda` int(11) DEFAULT NULL,
+  `n_descivenda` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `comivenda`
+--
+
+INSERT INTO `comivenda` (`n_numeivenda`, `n_numvenda`, `n_numeprodu`, `n_valorivenda`, `n_qtdeivenda`, `n_descivenda`) VALUES
+(1, 1, 1, 1251.29, 1, 0),
+(2, 1, 2, 1242.21, 2, 0),
+(3, 1, 3, 1241.21, 3, 0),
+(4, 1, 4, 1513.77, 4, 0),
+(5, 1, 5, 2325.32, 5, 0),
+(6, 2, 1, 1251.29, 6, 0),
+(7, 3, 3, 1241.21, 7, 0),
+(8, 4, 1, 1251.29, 1, 0),
+(9, 5, 3, 1241.21, 2, 0),
+(10, 6, 1, 1251.29, 3, 0),
+(11, 7, 2, 1242.21, 4, 0),
+(12, 8, 5, 2325.32, 5, 0),
+(13, 9, 2, 1242.21, 6, 0),
+(14, 10, 3, 1241.21, 7, 0),
+(15, 11, 1, 1251.29, 1, 0),
+(16, 12, 1, 1251.29, 2, 0),
+(17, 13, 2, 1242.21, 3, 0),
+(18, 14, 2, 1242.21, 4, 0),
+(19, 15, 3, 1241.21, 5, 0),
+(20, 16, 3, 1241.21, 6, 0),
+(21, 17, 4, 1513.77, 7, 0),
+(22, 18, 4, 1513.77, 1, 0),
+(23, 19, 5, 2325.32, 2, 0),
+(24, 20, 5, 2325.32, 3, 0),
+(25, 2, 2, 1242.21, 4, 0),
+(26, 3, 4, 1513.77, 5, 0),
+(27, 4, 2, 1242.21, 6, 0),
+(28, 5, 4, 1513.77, 7, 0),
+(29, 6, 5, 2325.32, 1, 0),
+(30, 7, 3, 1241.21, 2, 0),
+(31, 8, 1, 1251.29, 3, 0),
+(32, 9, 4, 1513.77, 4, 0),
+(33, 10, 5, 2325.32, 5, 0),
+(34, 11, 2, 1242.21, 6, 0),
+(35, 12, 2, 1242.21, 7, 0),
+(36, 13, 3, 1241.21, 1, 0),
+(37, 14, 3, 1241.21, 2, 0),
+(38, 15, 4, 1513.77, 3, 0),
+(39, 16, 4, 1513.77, 4, 0),
+(40, 17, 5, 2325.32, 5, 0),
+(41, 18, 5, 2325.32, 6, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `comprodu`
+--
+
+CREATE TABLE `comprodu` (
+  `n_numeprodu` int(11) NOT NULL,
+  `c_codiprodu` varchar(20) DEFAULT NULL,
+  `c_descprodu` varchar(100) DEFAULT NULL,
+  `n_valorprodu` float DEFAULT NULL,
+  `c_situprodu` varchar(1) DEFAULT NULL,
+  `n_numeforne` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `comprodu`
+--
+
+INSERT INTO `comprodu` (`n_numeprodu`, `c_codiprodu`, `c_descprodu`, `n_valorprodu`, `c_situprodu`, `n_numeforne`) VALUES
+(1, '123131', 'NOTEBOOK', 1251.29, 'A', 1),
+(2, '123223', 'SMARTPHONE', 1242.21, 'A', 2),
+(3, '1231', 'DESKTOP', 1241.21, 'A', 1),
+(4, '142123', 'TELEVISÃO', 2564.92, 'A', 2),
+(5, '7684', 'DRONE', 2325.32, 'A', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `comvenda`
+--
+
+CREATE TABLE `comvenda` (
+  `n_numevenda` int(11) NOT NULL,
+  `c_codivenda` varchar(10) DEFAULT NULL,
+  `n_numeclien` int(11) NOT NULL,
+  `n_numeforne` int(11) NOT NULL,
+  `n_numevende` int(11) NOT NULL,
+  `n_valovenda` float DEFAULT NULL,
+  `n_descvenda` float DEFAULT NULL,
+  `n_totavenda` float DEFAULT NULL,
+  `d_datavenda` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `comvenda`
+--
+
+INSERT INTO `comvenda` (`n_numevenda`, `c_codivenda`, `n_numeclien`, `n_numeforne`, `n_numevende`, `n_valovenda`, `n_descvenda`, `n_totavenda`, `d_datavenda`) VALUES
+(1, '1', 1, 1, 1, 25141, 0, 25141, '2015-01-01'),
+(2, '2', 2, 2, 2, 12476.6, 0, 12476.6, '2015-01-02'),
+(3, '3', 3, 1, 1, 16257.3, 0, 16257.3, '2015-01-03'),
+(4, '4', 4, 2, 2, 8704.55, 0, 8704.55, '2015-01-04'),
+(5, '5', 5, 1, 1, 13078.8, 0, 13078.8, '2015-01-01'),
+(6, '6', 6, 2, 2, 6079.19, 0, 6079.19, '2015-01-02'),
+(7, '7', 7, 1, 1, 7451.26, 0, 7451.26, '2015-01-03'),
+(8, '8', 8, 2, 2, 15380.5, 0, 15380.5, '2015-01-04'),
+(9, '9', 9, 1, 1, 13508.3, 0, 13508.3, '2015-01-01'),
+(10, '10', 1, 2, 2, 20315.1, 0, 20315.1, '2015-01-02'),
+(11, '11', 1, 1, 1, 8704.55, 0, 8704.55, '2015-01-01'),
+(12, '12', 2, 2, 2, 11198, 0, 11198, '2015-01-02'),
+(13, '13', 3, 1, 1, 4967.84, 0, 4967.84, '2015-01-03'),
+(14, '14', 3, 2, 2, 7451.26, 0, 7451.26, '2015-01-04'),
+(15, '15', 5, 1, 1, 10747.4, 0, 10747.4, '2015-01-01'),
+(16, '16', 6, 2, 2, 13502.3, 0, 13502.3, '2015-01-02'),
+(17, '17', 7, 1, 1, 22223, 0, 22223, '2015-01-03'),
+(18, '18', 8, 2, 2, 15465.7, 0, 15465.7, '2015-01-04'),
+(19, '19', 9, 1, 1, 4650.64, 0, 4650.64, '2015-01-01'),
+(20, '20', 9, 2, 2, 6975.96, 0, 6975.96, '2015-01-02');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `comvende`
+--
+
+CREATE TABLE `comvende` (
+  `n_numevende` int(11) NOT NULL,
+  `c_condivende` varchar(10) DEFAULT NULL,
+  `c_nomevende` varchar(100) DEFAULT NULL,
+  `c_razavende` varchar(100) DEFAULT NULL,
+  `c_fonevende` varchar(20) DEFAULT NULL,
+  `n_procvende` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `comvende`
+--
+
+INSERT INTO `comvende` (`n_numevende`, `c_condivende`, `c_nomevende`, `c_razavende`, `c_fonevende`, `n_procvende`) VALUES
+(1, '0001', 'CARLOS FERNANDES', 'CARLOS FERNANDES LTDA', '(47) 7535-8144', 12),
+(2, '0002', 'JÚLIA	GOMES', 'JÚLIA GOMES LTDA', '(12) 8037-6661', 25);
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `comclien`
+--
+ALTER TABLE `comclien`
+  ADD PRIMARY KEY (`n_numeclien`);
+
+--
+-- Índices de tabela `comforne`
+--
+ALTER TABLE `comforne`
+  ADD PRIMARY KEY (`n_numeforne`);
+
+--
+-- Índices de tabela `comivenda`
+--
+ALTER TABLE `comivenda`
+  ADD PRIMARY KEY (`n_numeivenda`),
+  ADD KEY `fk_comivenda_comprodu` (`n_numeprodu`),
+  ADD KEY `fk_comivenda_comvenda` (`n_numvenda`);
+
+--
+-- Índices de tabela `comprodu`
+--
+ALTER TABLE `comprodu`
+  ADD PRIMARY KEY (`n_numeprodu`);
+
+--
+-- Índices de tabela `comvenda`
+--
+ALTER TABLE `comvenda`
+  ADD PRIMARY KEY (`n_numevenda`),
+  ADD KEY `fk_comprodu_comforne` (`n_numeforne`),
+  ADD KEY `fk_comprodu_comvende` (`n_numevende`),
+  ADD KEY `fk_comvenda_comclien` (`n_numeclien`);
+
+--
+-- Índices de tabela `comvende`
+--
+ALTER TABLE `comvende`
+  ADD PRIMARY KEY (`n_numevende`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `comclien`
+--
+ALTER TABLE `comclien`
+  MODIFY `n_numeclien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `comforne`
+--
+ALTER TABLE `comforne`
+  MODIFY `n_numeforne` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `comivenda`
+--
+ALTER TABLE `comivenda`
+  MODIFY `n_numeivenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT de tabela `comprodu`
+--
+ALTER TABLE `comprodu`
+  MODIFY `n_numeprodu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `comvenda`
+--
+ALTER TABLE `comvenda`
+  MODIFY `n_numevenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT de tabela `comvende`
+--
+ALTER TABLE `comvende`
+  MODIFY `n_numevende` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `comivenda`
+--
+ALTER TABLE `comivenda`
+  ADD CONSTRAINT `fk_comivenda_comprodu` FOREIGN KEY (`n_numeprodu`) REFERENCES `comprodu` (`n_numeprodu`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_comivenda_comvenda` FOREIGN KEY (`n_numvenda`) REFERENCES `comvenda` (`n_numevenda`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para tabelas `comvenda`
+--
+ALTER TABLE `comvenda`
+  ADD CONSTRAINT `fk_comprodu_comforne` FOREIGN KEY (`n_numeforne`) REFERENCES `comforne` (`n_numeforne`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_comprodu_comvende` FOREIGN KEY (`n_numevende`) REFERENCES `comvende` (`n_numevende`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_comvenda_comclien` FOREIGN KEY (`n_numeclien`) REFERENCES `comclien` (`n_numeclien`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+--
+-- Banco de dados: `cadastro`
+--
+CREATE DATABASE IF NOT EXISTS `cadastro` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `cadastro`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `cursos`
+--
+
+CREATE TABLE `cursos` (
+  `idcurso` int(11) NOT NULL DEFAULT 0,
+  `nome` varchar(30) NOT NULL,
+  `descricao` text DEFAULT NULL,
+  `carga` int(10) UNSIGNED DEFAULT NULL,
+  `totaulas` int(10) UNSIGNED DEFAULT NULL,
+  `ano` year(4) DEFAULT 2016
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Despejando dados para a tabela `cursos`
+--
+
+INSERT INTO `cursos` (`idcurso`, `nome`, `descricao`, `carga`, `totaulas`, `ano`) VALUES
+(1, 'HTML5', 'Curso de HTML5', 40, 37, '2014'),
+(2, 'Algoritmos', 'Lógica de Programação', 20, 15, '2014'),
+(3, 'Photoshop5', 'Dicas de Photoshop CC', 10, 8, '2014'),
+(4, 'PHP', 'Curso de PHP para iniciantes', 40, 20, '2015'),
+(5, 'Java', 'Introdução à Linguagem Java', 40, 29, '2015'),
+(6, 'MySQL', 'Bancos de Dados MySQL', 30, 15, '2016'),
+(7, 'Word', 'Curso completo de Word', 40, 30, '2016'),
+(8, 'Python', 'Curso de Python', 40, 18, '2017'),
+(9, 'POO', 'Curso de Programação Orientada a Objetos', 60, 35, '2016'),
+(10, 'Excel', 'Curso completo de Excel', 40, 30, '2017'),
+(11, 'Responsividade', 'Curso de Responsividade', 30, 15, '2018'),
+(12, 'C++', 'Curso de C++ com Orientação a Objetos', 40, 25, '2017'),
+(13, 'C#', 'Curso de C#', 30, 12, '2017'),
+(14, 'Android', 'Curso de Desenvolvimento de Aplicativos para Android', 60, 30, '2018'),
+(15, 'JavaScript', 'Curso de JavaScript', 35, 18, '2017'),
+(16, 'PowerPoint', 'Curso completo de PowerPoint', 30, 12, '2018'),
+(17, 'Swift', 'Curso de Desenvolvimento de Aplicativos para iOS', 60, 30, '2019'),
+(18, 'Hardware', 'Curso de Montagem e Manutenção de PCs', 30, 12, '2017'),
+(19, 'Redes', 'Curso de Redes para Iniciantes', 40, 15, '2016'),
+(20, 'Segurança', 'Curso de Segurança', 15, 8, '2018'),
+(21, 'SEO', 'Curso de Otimização de Sites', 30, 12, '2017'),
+(22, 'Premiere', 'Curso de Edição de Vídeos com Premiere', 20, 10, '2017'),
+(23, 'After Effects', 'Curso de Efeitos em Vídeos com After Effects', 20, 10, '2018'),
+(24, 'WordPress', 'Curso de Criação de Sites com WordPress', 60, 30, '2019'),
+(25, 'Joomla', 'Curso de Criação de Sites com Joomla', 60, 30, '2019'),
+(26, 'Magento', 'Curso de Criação de Lojas Virtuais com Magento', 50, 25, '2019'),
+(27, 'Modelagem de Dados', 'Curso de Modelagem de Dados', 30, 12, '2020'),
+(28, 'HTML4', 'Curso Básico de HTML, versão 4.0', 20, 9, '2010'),
+(29, 'PHP7', 'Curso de PHP, versão 7.0', 40, 20, '2020'),
+(30, 'PHP4', 'Curso de PHP, versão 4.0', 30, 11, '2010');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `gafanhotos`
+--
+
+CREATE TABLE `gafanhotos` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(30) NOT NULL,
+  `profissao` varchar(20) DEFAULT NULL,
+  `nascimento` date DEFAULT NULL,
+  `sexo` enum('M','F') DEFAULT NULL,
+  `peso` decimal(5,2) DEFAULT NULL,
+  `altura` decimal(3,2) DEFAULT NULL,
+  `nacionalidade` varchar(20) DEFAULT 'Brasil'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Despejando dados para a tabela `gafanhotos`
+--
+
+INSERT INTO `gafanhotos` (`id`, `nome`, `profissao`, `nascimento`, `sexo`, `peso`, `altura`, `nacionalidade`) VALUES
+(1, 'Daniel Morais', 'Auxiliar Administrat', '1984-01-02', 'M', 78.50, 1.83, 'Brasil'),
+(2, 'Talita Nascimento', 'Farmacêutico', '1999-12-30', 'F', 55.20, 1.65, 'Portugal'),
+(3, 'Emerson Gabriel', 'Programador', '1920-12-30', 'M', 50.20, 1.65, 'Moçambique'),
+(4, 'Lucas Damasceno', 'Auxiliar Administrat', '1930-11-02', 'M', 63.20, 1.75, 'Irlanda'),
+(5, 'Leila Martins', 'Farmacêutico', '1975-04-22', 'F', 99.00, 2.15, 'Brasil'),
+(6, 'Letícia Neves', 'Programador', '1999-12-03', 'F', 87.00, 2.00, 'Brasil'),
+(7, 'Janaína Couto', 'Auxiliar Administrat', '1987-11-12', 'F', 75.40, 1.66, 'EUA'),
+(8, 'Carlisson Rosa', 'Professor', '2010-08-01', 'M', 78.22, 1.98, 'Brasil'),
+(9, 'Jackson Telles', 'Programador', '1999-01-23', 'M', 55.75, 1.33, 'Portugal'),
+(10, 'Danilo Araujo', 'Dentista', '1975-12-10', 'M', 99.21, 1.87, 'EUA'),
+(11, 'Andreia Delfino', 'Auxiliar Administrat', '1975-07-01', 'F', 48.64, 1.54, 'Irlanda'),
+(12, 'Valter Vilmerson', 'Ator', '1985-10-12', 'M', 88.55, 2.03, 'Brasil'),
+(13, 'Allan Silva', 'Programador', '1993-11-11', 'M', 76.99, 1.55, 'Brasil'),
+(14, 'Rosana Kunz', 'Professor', '1935-01-16', 'F', 55.24, 1.87, 'Brasil'),
+(15, 'Josiane Dutra', 'Empreendedor', '1950-01-20', 'F', 98.70, 1.04, 'Portugal'),
+(16, 'Elvis Schwarz', 'Dentista', '2011-05-07', 'M', 66.69, 1.76, 'EUA'),
+(17, 'Paulo Narley', 'Auxiliar Administrat', '1997-03-17', 'M', 120.10, 2.22, 'Brasil'),
+(18, 'Joade Assis', 'Médico', '1930-12-01', 'M', 65.88, 1.78, 'França'),
+(19, 'Nara Matos', 'Programador', '1978-03-17', 'F', 65.90, 1.33, 'Brasil'),
+(20, 'Marcos Dissotti', 'Empreendedor', '2010-01-01', 'M', 53.79, 1.54, 'Portugal'),
+(21, 'Ana Carolina Mendes', 'Ator', '2000-12-15', 'F', 88.30, 1.54, 'Brasil'),
+(22, 'Guilherme de Sousa', 'Dentista', '2001-05-18', 'M', 132.70, 1.97, 'Moçambique'),
+(23, 'Bruno Torres', 'Auxiliar Administrat', '2000-01-30', 'M', 44.65, 1.65, 'Brasil'),
+(24, 'Yuji Homa', 'Empreendedor', '1996-12-25', 'M', 33.90, 1.22, 'Japão'),
+(25, 'Raian Porto', 'Programador', '1989-05-05', 'M', 54.89, 1.54, 'Brasil'),
+(26, 'Paulo Batista', 'Ator', '1999-03-15', 'M', 110.12, 1.87, 'Portugal'),
+(27, 'Monique Precivalli', 'Auxiliar Administrat', '2013-12-30', 'F', 48.20, 1.22, 'Brasil'),
+(28, 'Herisson Silva', 'Auxiliar Administrat', '1965-10-10', 'M', 74.65, 1.56, 'EUA'),
+(29, 'Tiago Ulisses', 'Dentista', '1993-04-22', 'M', 150.30, 2.35, 'Brasil'),
+(30, 'Anderson Rafael', 'Programador', '1989-12-01', 'M', 64.22, 1.44, 'Irlanda'),
+(31, 'Karine Ribeiro', 'Empreendedor', '1988-10-01', 'F', 42.10, 1.65, 'Brasil'),
+(32, 'Roberto Luiz Debarba', 'Ator', '2007-01-09', 'M', 77.44, 1.56, 'Brasil'),
+(33, 'Jarismar Andrade', 'Dentista', '2000-06-23', 'F', 63.70, 1.33, 'Brasil'),
+(34, 'Janaina Oliveira', 'Professor', '1955-03-12', 'F', 52.90, 1.76, 'Canadá'),
+(35, 'Márcio Mello', 'Programador', '2011-11-20', 'M', 54.11, 1.55, 'EUA'),
+(36, 'Robson Rodolpho', 'Auxiliar Administrat', '2000-08-08', 'M', 110.10, 1.76, 'Brasil'),
+(37, 'Daniele Moledo', 'Empreendedor', '2006-08-11', 'F', 101.30, 1.99, 'Brasil'),
+(38, 'Neto Sophiate', 'Ator', '1996-05-17', 'M', 59.28, 1.65, 'Portugal'),
+(39, 'Neriton Dias', 'Auxiliar Administrat', '2009-10-30', 'M', 48.99, 1.29, 'Brasil'),
+(40, 'André Schmidt', 'Programador', '1993-07-26', 'M', 55.37, 1.22, 'Angola'),
+(41, 'Isaias Buscarino', 'Dentista', '2001-01-07', 'M', 99.90, 1.55, 'Moçambique'),
+(42, 'Rafael Guimma', 'Empreendedor', '1968-04-11', 'M', 88.88, 1.54, 'Brasil'),
+(43, 'Ana Carolina Hernandes', 'Ator', '1970-10-11', 'F', 65.40, 2.08, 'EUA'),
+(44, 'Luiz Paulo', 'Professor', '1984-11-01', 'M', 75.12, 1.38, 'Portugal'),
+(45, 'Bruna Teles', 'Programador', '1980-11-07', 'F', 55.10, 1.86, 'Brasil'),
+(46, 'Diogo Padilha', 'Auxiliar Administrat', '2000-03-03', 'M', 54.34, 1.88, 'Angola'),
+(47, 'Bruno Miltersteiner', 'Dentista', '1986-02-19', 'M', 77.45, 1.65, 'Alemanha'),
+(48, 'Elaine Nunes', 'Programador', '1998-08-15', 'F', 35.90, 2.00, 'Canadá'),
+(49, 'Silvio Ricardo', 'Programador', '2012-03-12', 'M', 65.99, 1.23, 'EUA'),
+(50, 'Denilson Barbosa da Silva', 'Empreendedor', '2000-01-08', 'M', 97.30, 2.00, 'Brasil'),
+(51, 'Jucinei Teixeira', 'Professor', '1977-11-22', 'F', 44.80, 1.76, 'Portugal'),
+(52, 'Bruna Santos', 'Auxiliar Administrat', '1991-12-01', 'F', 76.30, 1.45, 'Canadá'),
+(53, 'André Vitebo', 'Médico', '1970-07-01', 'M', 44.11, 1.55, 'Brasil'),
+(54, 'Andre Santini', 'Programador', '1991-08-15', 'M', 66.00, 1.76, 'Itália'),
+(55, 'Ruan Valente', 'Programador', '1998-03-19', 'M', 101.90, 1.76, 'Canadá'),
+(56, 'Nailton Mauricio', 'Médico', '1992-04-25', 'M', 86.01, 1.43, 'EUA'),
+(57, 'Rita Pontes', 'Professor', '1999-09-02', 'F', 54.10, 1.35, 'Angola'),
+(58, 'Carlos Camargo', 'Programador', '2005-02-22', 'M', 124.65, 1.33, 'Brasil'),
+(59, 'Philppe Oliveira', 'Auxiliar Administrat', '2000-05-23', 'M', 105.10, 2.19, 'Brasil'),
+(60, 'Dayana Dias', 'Professor', '1993-05-30', 'F', 88.30, 1.66, 'Angola'),
+(61, 'Silvana Albuquerque', 'Programador', '1999-05-22', 'F', 56.00, 1.50, 'Brasil');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pessoas`
+--
+
+CREATE TABLE `pessoas` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `profissao` varchar(20) DEFAULT NULL,
+  `nascimento` date DEFAULT NULL,
+  `sexo` enum('M','F') DEFAULT NULL,
+  `peso` decimal(5,2) DEFAULT NULL,
+  `altura` decimal(3,2) DEFAULT NULL,
+  `nacionalidade` varchar(20) DEFAULT 'Brasil'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Despejando dados para a tabela `pessoas`
+--
+
+INSERT INTO `pessoas` (`id`, `nome`, `profissao`, `nascimento`, `sexo`, `peso`, `altura`, `nacionalidade`) VALUES
+(3, 'Alan Gabriel Silva Oliveira', NULL, '2003-07-22', 'M', 62.00, 1.71, 'Brasil'),
+(4, 'Ana Gabriela Silva Oliveira', NULL, '1998-12-29', 'F', 48.00, 1.60, 'Brasil');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `cursos`
+--
+ALTER TABLE `cursos`
+  ADD PRIMARY KEY (`idcurso`),
+  ADD UNIQUE KEY `nome` (`nome`);
+
+--
+-- Índices de tabela `gafanhotos`
+--
+ALTER TABLE `gafanhotos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `pessoas`
+--
+ALTER TABLE `pessoas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `gafanhotos`
+--
+ALTER TABLE `gafanhotos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+
+--
+-- AUTO_INCREMENT de tabela `pessoas`
+--
+ALTER TABLE `pessoas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Banco de dados: `EduPlus`
 --
@@ -94,14 +618,6 @@ INSERT INTO `cursoAlunos` (`id`, `matricula`, `idCurso`) VALUES
 (26, 'A10019', 2),
 (27, 'A10021', 2),
 (28, 'A10022', 2),
-(29, 'A10008', 3),
-(30, 'A10009', 3),
-(31, 'A10010', 3),
-(32, 'A10011', 3),
-(33, 'A10012', 3),
-(34, 'A10013', 3),
-(35, 'A10021', 3),
-(36, 'A10022', 3),
 (37, 'A10008', 3),
 (38, 'A10009', 3),
 (39, 'A10010', 3),
@@ -122,7 +638,7 @@ INSERT INTO `cursoAlunos` (`id`, `matricula`, `idCurso`) VALUES
 (54, 'A10021', 5),
 (55, 'A10022', 5),
 (56, 'A10021', 6),
-(57, 'A10021', 6),
+(57, 'A10022', 6),
 (58, 'A10021', 7),
 (59, 'A10022', 7);
 
@@ -588,6 +1104,932 @@ ALTER TABLE `infoAlunos`
 --
 ALTER TABLE `modulos`
   ADD CONSTRAINT `modulo_ibfk_1` FOREIGN KEY (`idInstrutor`) REFERENCES `instrutores` (`matricula`);
+--
+-- Banco de dados: `empresa`
+--
+CREATE DATABASE IF NOT EXISTS `empresa` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `empresa`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `departamentos`
+--
+
+CREATE TABLE `departamentos` (
+  `codigoDepartamento` int(11) NOT NULL,
+  `nome` varchar(30) NOT NULL,
+  `codigoGerente` char(11) DEFAULT NULL,
+  `data_inicio_gerente` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `departamentos`
+--
+
+INSERT INTO `departamentos` (`codigoDepartamento`, `nome`, `codigoGerente`, `data_inicio_gerente`) VALUES
+(1, 'Matriz', '88866555576', '1981-06-19'),
+(4, 'Administração', '98765432168', '1995-01-01'),
+(5, 'Pesquisa', '33344555587', '1988-05-02');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `dependentes`
+--
+
+CREATE TABLE `dependentes` (
+  `codigoFuncionario` char(11) NOT NULL,
+  `nomeDependente` varchar(100) NOT NULL,
+  `sexo` char(1) NOT NULL,
+  `dataNascimento` date DEFAULT NULL,
+  `parentesco` varchar(30) DEFAULT NULL
+) ;
+
+--
+-- Despejando dados para a tabela `dependentes`
+--
+
+INSERT INTO `dependentes` (`codigoFuncionario`, `nomeDependente`, `sexo`, `dataNascimento`, `parentesco`) VALUES
+('12345678966', 'Aline', 'F', '1988-12-30', 'Filha'),
+('12345678966', 'Elizabeth', 'F', '1967-05-05', 'Esposa'),
+('12345678966', 'Michael', 'M', '1988-01-04', 'Filho'),
+('33344555587', 'Alicia', 'F', '1986-04-05', 'Filha'),
+('33344555587', 'Janaína', 'F', '1958-05-03', 'Esposa'),
+('33344555587', 'Tiago', 'M', '1983-10-25', 'Filho'),
+('98765432168', 'Antonio', 'M', '1942-02-28', 'Marido');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `funcionarios`
+--
+
+CREATE TABLE `funcionarios` (
+  `codigoFuncionario` char(11) NOT NULL,
+  `primeiroNome` varchar(30) NOT NULL,
+  `ultimoNome` varchar(30) NOT NULL,
+  `dataNascimento` date DEFAULT NULL,
+  `endereco` varchar(100) DEFAULT NULL,
+  `sexo` char(1) NOT NULL,
+  `salario` decimal(10,2) DEFAULT NULL,
+  `codigoFuncionarioGerente` char(11) DEFAULT NULL
+) ;
+
+--
+-- Despejando dados para a tabela `funcionarios`
+--
+
+INSERT INTO `funcionarios` (`codigoFuncionario`, `primeiroNome`, `ultimoNome`, `dataNascimento`, `endereco`, `sexo`, `salario`, `codigoFuncionarioGerente`) VALUES
+('12345678966', 'João', 'Silva', '1965-09-01', 'Rua das Flores, 751, São Paulo, SP', 'M', 30000.00, '33344555587'),
+('33344555587', 'Fernando', 'Young', '1955-12-08', 'Rua da Lapa, 34, São Paulo, SP', 'M', 40000.00, '88866555576'),
+('45345345376', 'Joice', 'Leite', '1965-09-01', 'Rua das Flores, 751, São Paulo, SP', 'M', 30000.00, '33344555587'),
+('66688444476', 'Ronaldo', 'Lima', '1962-09-15', 'Rua Rebouças, 65, Piracicaba, SP', 'M', 38000.00, '33344555587'),
+('88866555576', 'Jorge', 'Brito', '1937-11-10', 'Rua do Horto, 35, São Paulo, SP', 'M', 55000.00, NULL),
+('98765432168', 'Jennifer', 'Souza', '1941-06-20', 'Av. Artur de Lima, 54, Santo André, SP', 'F', 43000.00, '88866555576'),
+('98798798733', 'André', 'Pereira', '1969-03-29', 'Rua Timbira, 35, São Paulo, SP', 'M', 25000.00, '98765432168'),
+('99988777767', 'Alice', 'Zalaya', '1968-01-19', 'Rua Souza Lima, 35, Curitiba, PR', 'F', 25000.00, '98765432168');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `localizacao_dep`
+--
+
+CREATE TABLE `localizacao_dep` (
+  `codigoDepartamento` int(11) NOT NULL,
+  `depLocal` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `projetos`
+--
+
+CREATE TABLE `projetos` (
+  `codigoProjeto` int(11) NOT NULL,
+  `projNome` varchar(30) NOT NULL,
+  `projLocal` varchar(30) DEFAULT NULL,
+  `codigoDepartamento` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `projetos`
+--
+
+INSERT INTO `projetos` (`codigoProjeto`, `projNome`, `projLocal`, `codigoDepartamento`) VALUES
+(1, 'Produto X', 'Santo André', 5),
+(2, 'Produto Y', 'Itú', 5),
+(3, 'Produto Z', 'São Paulo', 5),
+(10, 'Informatização', 'Mauá', 4),
+(20, 'Reorganização', 'São Paulo', 1),
+(30, 'Novos Benefícios', 'Mauá', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `trabalha_em`
+--
+
+CREATE TABLE `trabalha_em` (
+  `codigoFuncionario` char(11) NOT NULL,
+  `codigoProjeto` int(11) NOT NULL,
+  `horas` decimal(5,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `trabalha_em`
+--
+
+INSERT INTO `trabalha_em` (`codigoFuncionario`, `codigoProjeto`, `horas`) VALUES
+('12345678966', 1, 32.50),
+('12345678966', 2, 7.50),
+('33344555587', 2, 10.00),
+('33344555587', 3, 10.00),
+('33344555587', 10, 10.00),
+('33344555587', 20, 10.00),
+('45345345376', 1, 20.00),
+('45345345376', 2, 20.00),
+('66688444476', 3, 40.00),
+('99988777767', 30, 30.00);
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `departamentos`
+--
+ALTER TABLE `departamentos`
+  ADD PRIMARY KEY (`codigoDepartamento`),
+  ADD UNIQUE KEY `nome` (`nome`),
+  ADD KEY `codigoGerente` (`codigoGerente`);
+
+--
+-- Índices de tabela `dependentes`
+--
+ALTER TABLE `dependentes`
+  ADD PRIMARY KEY (`codigoFuncionario`,`nomeDependente`);
+
+--
+-- Índices de tabela `funcionarios`
+--
+ALTER TABLE `funcionarios`
+  ADD PRIMARY KEY (`codigoFuncionario`),
+  ADD KEY `codigoFuncionarioGerente` (`codigoFuncionarioGerente`);
+
+--
+-- Índices de tabela `localizacao_dep`
+--
+ALTER TABLE `localizacao_dep`
+  ADD PRIMARY KEY (`codigoDepartamento`,`depLocal`);
+
+--
+-- Índices de tabela `projetos`
+--
+ALTER TABLE `projetos`
+  ADD PRIMARY KEY (`codigoProjeto`),
+  ADD UNIQUE KEY `projNome` (`projNome`),
+  ADD KEY `codigoDepartamento` (`codigoDepartamento`);
+
+--
+-- Índices de tabela `trabalha_em`
+--
+ALTER TABLE `trabalha_em`
+  ADD PRIMARY KEY (`codigoFuncionario`,`codigoProjeto`),
+  ADD KEY `codigoProjeto` (`codigoProjeto`);
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `departamentos`
+--
+ALTER TABLE `departamentos`
+  ADD CONSTRAINT `departamentos_ibfk_1` FOREIGN KEY (`codigoGerente`) REFERENCES `funcionarios` (`codigoFuncionario`);
+
+--
+-- Restrições para tabelas `dependentes`
+--
+ALTER TABLE `dependentes`
+  ADD CONSTRAINT `dependentes_ibfk_1` FOREIGN KEY (`codigoFuncionario`) REFERENCES `funcionarios` (`codigoFuncionario`);
+
+--
+-- Restrições para tabelas `funcionarios`
+--
+ALTER TABLE `funcionarios`
+  ADD CONSTRAINT `funcionarios_ibfk_1` FOREIGN KEY (`codigoFuncionarioGerente`) REFERENCES `funcionarios` (`codigoFuncionario`);
+
+--
+-- Restrições para tabelas `localizacao_dep`
+--
+ALTER TABLE `localizacao_dep`
+  ADD CONSTRAINT `localizacao_dep_ibfk_1` FOREIGN KEY (`codigoDepartamento`) REFERENCES `departamentos` (`codigoDepartamento`);
+
+--
+-- Restrições para tabelas `projetos`
+--
+ALTER TABLE `projetos`
+  ADD CONSTRAINT `projetos_ibfk_1` FOREIGN KEY (`codigoDepartamento`) REFERENCES `departamentos` (`codigoDepartamento`);
+
+--
+-- Restrições para tabelas `trabalha_em`
+--
+ALTER TABLE `trabalha_em`
+  ADD CONSTRAINT `trabalha_em_ibfk_1` FOREIGN KEY (`codigoFuncionario`) REFERENCES `funcionarios` (`codigoFuncionario`),
+  ADD CONSTRAINT `trabalha_em_ibfk_2` FOREIGN KEY (`codigoProjeto`) REFERENCES `projetos` (`codigoProjeto`);
+--
+-- Banco de dados: `Fidelizacao`
+--
+CREATE DATABASE IF NOT EXISTS `Fidelizacao` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `Fidelizacao`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Clientes`
+--
+
+CREATE TABLE `Clientes` (
+  `idCliente` int(11) NOT NULL,
+  `nome` varchar(30) NOT NULL,
+  `CPF` varchar(11) NOT NULL,
+  `profissao` varchar(20) NOT NULL,
+  `saldoPontos` int(11) NOT NULL DEFAULT 0
+) ;
+
+--
+-- Despejando dados para a tabela `Clientes`
+--
+
+INSERT INTO `Clientes` (`idCliente`, `nome`, `CPF`, `profissao`, `saldoPontos`) VALUES
+(1, 'André Carneiro', '32525412345', 'Carteiro', 0),
+(2, 'Márcio Rodrigues', '48120723456', 'Engenheiro', 0),
+(3, 'Cristina Santana', '69712387654', 'Contadora', 0),
+(4, 'Michele Medeiros', '90681311223', 'Professora', 0),
+(5, 'Daniel Maia', '02581365432', 'Bancário', 0),
+(6, 'Larissa Gomes', '32541709876', 'Professora', 0),
+(7, 'Rafaela Costa', '98011704567', 'Arquiteta', 0),
+(8, 'César Fernandes', '74281098765', 'Dentista', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Compras`
+--
+
+CREATE TABLE `Compras` (
+  `idCompra` int(11) NOT NULL,
+  `idCliente` int(11) NOT NULL,
+  `data` datetime NOT NULL,
+  `valor` decimal(9,2) NOT NULL,
+  `pontosGanhos` int(11) NOT NULL
+) ;
+
+--
+-- Despejando dados para a tabela `Compras`
+--
+
+INSERT INTO `Compras` (`idCompra`, `idCliente`, `data`, `valor`, `pontosGanhos`) VALUES
+(1, 1, '2019-09-02 00:00:00', 22.78, 7),
+(2, 2, '2019-10-12 00:00:00', 50.32, 14),
+(3, 4, '2019-11-30 00:00:00', 123.14, 25),
+(4, 3, '2018-01-08 00:00:00', 108.22, 19),
+(5, 2, '2010-01-12 00:00:00', 349.06, 92),
+(6, 5, '2018-02-22 00:00:00', 225.56, 45),
+(7, 6, '2018-03-22 00:00:00', 79.00, 34),
+(8, 1, '2019-11-02 00:00:00', 63.12, 18),
+(9, 6, '2019-07-28 00:00:00', 55.49, 16),
+(10, 8, '2019-08-17 00:00:00', 25.29, 8);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Premios`
+--
+
+CREATE TABLE `Premios` (
+  `idPremio` int(11) NOT NULL,
+  `descricao` varchar(20) NOT NULL,
+  `valorPontos` int(11) NOT NULL,
+  `quantEstoque` int(11) NOT NULL
+) ;
+
+--
+-- Despejando dados para a tabela `Premios`
+--
+
+INSERT INTO `Premios` (`idPremio`, `descricao`, `valorPontos`, `quantEstoque`) VALUES
+(1, 'Bolsa (100% couro)', 300, 5),
+(2, 'Bolsa (palha)', 80, 12),
+(3, 'Relógio masculino', 160, 3),
+(4, 'Boné (100% algodão)', 40, 10),
+(5, 'Óculos', 27, 30),
+(6, 'Chaveiro', 9, 110),
+(7, 'Caneta', 7, 92);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `Trocas`
+--
+
+CREATE TABLE `Trocas` (
+  `idTroca` int(11) NOT NULL,
+  `idCliente` int(11) NOT NULL,
+  `idPremio` int(11) NOT NULL,
+  `quantidade` int(11) NOT NULL,
+  `data` datetime NOT NULL
+) ;
+
+--
+-- Despejando dados para a tabela `Trocas`
+--
+
+INSERT INTO `Trocas` (`idTroca`, `idCliente`, `idPremio`, `quantidade`, `data`) VALUES
+(1, 1, 7, 2, '2019-10-15 00:00:00'),
+(2, 2, 6, 1, '2019-11-29 00:00:00'),
+(3, 3, 7, 1, '2019-11-12 00:00:00'),
+(4, 6, 4, 1, '2018-01-15 00:00:00'),
+(5, 5, 5, 1, '2018-01-24 00:00:00'),
+(6, 2, 2, 1, '2018-02-06 00:00:00'),
+(7, 4, 6, 2, '2018-04-12 00:00:00'),
+(8, 5, 6, 1, '2019-12-15 00:00:00'),
+(9, 6, 7, 1, '2018-03-17 00:00:00');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `Clientes`
+--
+ALTER TABLE `Clientes`
+  ADD PRIMARY KEY (`idCliente`),
+  ADD UNIQUE KEY `CPF` (`CPF`);
+
+--
+-- Índices de tabela `Compras`
+--
+ALTER TABLE `Compras`
+  ADD PRIMARY KEY (`idCompra`),
+  ADD KEY `idCliente` (`idCliente`);
+
+--
+-- Índices de tabela `Premios`
+--
+ALTER TABLE `Premios`
+  ADD PRIMARY KEY (`idPremio`);
+
+--
+-- Índices de tabela `Trocas`
+--
+ALTER TABLE `Trocas`
+  ADD PRIMARY KEY (`idTroca`),
+  ADD KEY `idCliente` (`idCliente`),
+  ADD KEY `idPremio` (`idPremio`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `Clientes`
+--
+ALTER TABLE `Clientes`
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `Compras`
+--
+ALTER TABLE `Compras`
+  MODIFY `idCompra` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `Premios`
+--
+ALTER TABLE `Premios`
+  MODIFY `idPremio` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `Trocas`
+--
+ALTER TABLE `Trocas`
+  MODIFY `idTroca` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `Compras`
+--
+ALTER TABLE `Compras`
+  ADD CONSTRAINT `Compras_ibfk_1` FOREIGN KEY (`idCliente`) REFERENCES `Clientes` (`idCliente`);
+
+--
+-- Restrições para tabelas `Trocas`
+--
+ALTER TABLE `Trocas`
+  ADD CONSTRAINT `Trocas_ibfk_1` FOREIGN KEY (`idCliente`) REFERENCES `Clientes` (`idCliente`),
+  ADD CONSTRAINT `Trocas_ibfk_2` FOREIGN KEY (`idPremio`) REFERENCES `Premios` (`idPremio`);
+--
+-- Banco de dados: `lojamix`
+--
+CREATE DATABASE IF NOT EXISTS `lojamix` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `lojamix`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `produtos`
+--
+
+CREATE TABLE `produtos` (
+  `n_CodProduto` int(11) NOT NULL,
+  `c_Descricao` varchar(200) NOT NULL,
+  `c_Marca` varchar(50) DEFAULT NULL,
+  `n_Preco` decimal(10,0) NOT NULL,
+  `c_Tipo` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `produtos`
+--
+ALTER TABLE `produtos`
+  ADD PRIMARY KEY (`n_CodProduto`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `produtos`
+--
+ALTER TABLE `produtos`
+  MODIFY `n_CodProduto` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Banco de dados: `phpmyadmin`
+--
+CREATE DATABASE IF NOT EXISTS `phpmyadmin` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `phpmyadmin`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__bookmark`
+--
+
+CREATE TABLE `pma__bookmark` (
+  `id` int(11) NOT NULL,
+  `dbase` varchar(255) NOT NULL DEFAULT '',
+  `user` varchar(255) NOT NULL DEFAULT '',
+  `label` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `query` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Bookmarks';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__central_columns`
+--
+
+CREATE TABLE `pma__central_columns` (
+  `db_name` varchar(64) NOT NULL,
+  `col_name` varchar(64) NOT NULL,
+  `col_type` varchar(64) NOT NULL,
+  `col_length` text DEFAULT NULL,
+  `col_collation` varchar(64) NOT NULL,
+  `col_isNull` tinyint(1) NOT NULL,
+  `col_extra` varchar(255) DEFAULT '',
+  `col_default` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Central list of columns';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__column_info`
+--
+
+CREATE TABLE `pma__column_info` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `db_name` varchar(64) NOT NULL DEFAULT '',
+  `table_name` varchar(64) NOT NULL DEFAULT '',
+  `column_name` varchar(64) NOT NULL DEFAULT '',
+  `comment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `mimetype` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `transformation` varchar(255) NOT NULL DEFAULT '',
+  `transformation_options` varchar(255) NOT NULL DEFAULT '',
+  `input_transformation` varchar(255) NOT NULL DEFAULT '',
+  `input_transformation_options` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Column information for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__designer_settings`
+--
+
+CREATE TABLE `pma__designer_settings` (
+  `username` varchar(64) NOT NULL,
+  `settings_data` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Settings related to Designer';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__export_templates`
+--
+
+CREATE TABLE `pma__export_templates` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `username` varchar(64) NOT NULL,
+  `export_type` varchar(10) NOT NULL,
+  `template_name` varchar(64) NOT NULL,
+  `template_data` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved export templates';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__favorite`
+--
+
+CREATE TABLE `pma__favorite` (
+  `username` varchar(64) NOT NULL,
+  `tables` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Favorite tables';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__history`
+--
+
+CREATE TABLE `pma__history` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `username` varchar(64) NOT NULL DEFAULT '',
+  `db` varchar(64) NOT NULL DEFAULT '',
+  `table` varchar(64) NOT NULL DEFAULT '',
+  `timevalue` timestamp NOT NULL DEFAULT current_timestamp(),
+  `sqlquery` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='SQL history for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__navigationhiding`
+--
+
+CREATE TABLE `pma__navigationhiding` (
+  `username` varchar(64) NOT NULL,
+  `item_name` varchar(64) NOT NULL,
+  `item_type` varchar(64) NOT NULL,
+  `db_name` varchar(64) NOT NULL,
+  `table_name` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Hidden items of navigation tree';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__pdf_pages`
+--
+
+CREATE TABLE `pma__pdf_pages` (
+  `db_name` varchar(64) NOT NULL DEFAULT '',
+  `page_nr` int(10) UNSIGNED NOT NULL,
+  `page_descr` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='PDF relation pages for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__recent`
+--
+
+CREATE TABLE `pma__recent` (
+  `username` varchar(64) NOT NULL,
+  `tables` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Recently accessed tables';
+
+--
+-- Despejando dados para a tabela `pma__recent`
+--
+
+INSERT INTO `pma__recent` (`username`, `tables`) VALUES
+('root', '[{\"db\":\"\",\"table\":\"alunos\"},{\"db\":\"\",\"table\":\"instrutores\"},{\"db\":\"\",\"table\":\"cursos\"},{\"db\":\"\",\"table\":\"cursoAlunos\"},{\"db\":\"\",\"table\":\"cursoModulos\"},{\"db\":\"\",\"table\":\"modulos\"},{\"db\":\"\",\"table\":\"infoAlunos\"},{\"db\":\"EduPlus\",\"table\":\"infoAlunos\"},{\"db\":\"EduPlus\",\"table\":\"cursos\"},{\"db\":\"EduPlus\",\"table\":\"modulos\"}]');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__relation`
+--
+
+CREATE TABLE `pma__relation` (
+  `master_db` varchar(64) NOT NULL DEFAULT '',
+  `master_table` varchar(64) NOT NULL DEFAULT '',
+  `master_field` varchar(64) NOT NULL DEFAULT '',
+  `foreign_db` varchar(64) NOT NULL DEFAULT '',
+  `foreign_table` varchar(64) NOT NULL DEFAULT '',
+  `foreign_field` varchar(64) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Relation table';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__savedsearches`
+--
+
+CREATE TABLE `pma__savedsearches` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `username` varchar(64) NOT NULL DEFAULT '',
+  `db_name` varchar(64) NOT NULL DEFAULT '',
+  `search_name` varchar(64) NOT NULL DEFAULT '',
+  `search_data` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved searches';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__table_coords`
+--
+
+CREATE TABLE `pma__table_coords` (
+  `db_name` varchar(64) NOT NULL DEFAULT '',
+  `table_name` varchar(64) NOT NULL DEFAULT '',
+  `pdf_page_number` int(11) NOT NULL DEFAULT 0,
+  `x` float UNSIGNED NOT NULL DEFAULT 0,
+  `y` float UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table coordinates for phpMyAdmin PDF output';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__table_info`
+--
+
+CREATE TABLE `pma__table_info` (
+  `db_name` varchar(64) NOT NULL DEFAULT '',
+  `table_name` varchar(64) NOT NULL DEFAULT '',
+  `display_field` varchar(64) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table information for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__table_uiprefs`
+--
+
+CREATE TABLE `pma__table_uiprefs` (
+  `username` varchar(64) NOT NULL,
+  `db_name` varchar(64) NOT NULL,
+  `table_name` varchar(64) NOT NULL,
+  `prefs` text NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tables'' UI preferences';
+
+--
+-- Despejando dados para a tabela `pma__table_uiprefs`
+--
+
+INSERT INTO `pma__table_uiprefs` (`username`, `db_name`, `table_name`, `prefs`, `last_update`) VALUES
+('root', '', 'cursos', '{\"sorted_col\":\"`cursos`.`nome` ASC\"}', '2024-12-04 00:53:36');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__tracking`
+--
+
+CREATE TABLE `pma__tracking` (
+  `db_name` varchar(64) NOT NULL,
+  `table_name` varchar(64) NOT NULL,
+  `version` int(10) UNSIGNED NOT NULL,
+  `date_created` datetime NOT NULL,
+  `date_updated` datetime NOT NULL,
+  `schema_snapshot` text NOT NULL,
+  `schema_sql` text DEFAULT NULL,
+  `data_sql` longtext DEFAULT NULL,
+  `tracking` set('UPDATE','REPLACE','INSERT','DELETE','TRUNCATE','CREATE DATABASE','ALTER DATABASE','DROP DATABASE','CREATE TABLE','ALTER TABLE','RENAME TABLE','DROP TABLE','CREATE INDEX','DROP INDEX','CREATE VIEW','ALTER VIEW','DROP VIEW') DEFAULT NULL,
+  `tracking_active` int(1) UNSIGNED NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Database changes tracking for phpMyAdmin';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__userconfig`
+--
+
+CREATE TABLE `pma__userconfig` (
+  `username` varchar(64) NOT NULL,
+  `timevalue` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `config_data` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User preferences storage for phpMyAdmin';
+
+--
+-- Despejando dados para a tabela `pma__userconfig`
+--
+
+INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
+('root', '2024-12-04 18:27:39', '{\"lang\":\"pt_BR\",\"Console\\/Mode\":\"collapse\",\"Export\\/file_template_server\":\"EduPlus\"}');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__usergroups`
+--
+
+CREATE TABLE `pma__usergroups` (
+  `usergroup` varchar(64) NOT NULL,
+  `tab` varchar(64) NOT NULL,
+  `allowed` enum('Y','N') NOT NULL DEFAULT 'N'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User groups with configured menu items';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `pma__users`
+--
+
+CREATE TABLE `pma__users` (
+  `username` varchar(64) NOT NULL,
+  `usergroup` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Users and their assignments to user groups';
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `pma__bookmark`
+--
+ALTER TABLE `pma__bookmark`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `pma__central_columns`
+--
+ALTER TABLE `pma__central_columns`
+  ADD PRIMARY KEY (`db_name`,`col_name`);
+
+--
+-- Índices de tabela `pma__column_info`
+--
+ALTER TABLE `pma__column_info`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `db_name` (`db_name`,`table_name`,`column_name`);
+
+--
+-- Índices de tabela `pma__designer_settings`
+--
+ALTER TABLE `pma__designer_settings`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Índices de tabela `pma__export_templates`
+--
+ALTER TABLE `pma__export_templates`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `u_user_type_template` (`username`,`export_type`,`template_name`);
+
+--
+-- Índices de tabela `pma__favorite`
+--
+ALTER TABLE `pma__favorite`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Índices de tabela `pma__history`
+--
+ALTER TABLE `pma__history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `username` (`username`,`db`,`table`,`timevalue`);
+
+--
+-- Índices de tabela `pma__navigationhiding`
+--
+ALTER TABLE `pma__navigationhiding`
+  ADD PRIMARY KEY (`username`,`item_name`,`item_type`,`db_name`,`table_name`);
+
+--
+-- Índices de tabela `pma__pdf_pages`
+--
+ALTER TABLE `pma__pdf_pages`
+  ADD PRIMARY KEY (`page_nr`),
+  ADD KEY `db_name` (`db_name`);
+
+--
+-- Índices de tabela `pma__recent`
+--
+ALTER TABLE `pma__recent`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Índices de tabela `pma__relation`
+--
+ALTER TABLE `pma__relation`
+  ADD PRIMARY KEY (`master_db`,`master_table`,`master_field`),
+  ADD KEY `foreign_field` (`foreign_db`,`foreign_table`);
+
+--
+-- Índices de tabela `pma__savedsearches`
+--
+ALTER TABLE `pma__savedsearches`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `u_savedsearches_username_dbname` (`username`,`db_name`,`search_name`);
+
+--
+-- Índices de tabela `pma__table_coords`
+--
+ALTER TABLE `pma__table_coords`
+  ADD PRIMARY KEY (`db_name`,`table_name`,`pdf_page_number`);
+
+--
+-- Índices de tabela `pma__table_info`
+--
+ALTER TABLE `pma__table_info`
+  ADD PRIMARY KEY (`db_name`,`table_name`);
+
+--
+-- Índices de tabela `pma__table_uiprefs`
+--
+ALTER TABLE `pma__table_uiprefs`
+  ADD PRIMARY KEY (`username`,`db_name`,`table_name`);
+
+--
+-- Índices de tabela `pma__tracking`
+--
+ALTER TABLE `pma__tracking`
+  ADD PRIMARY KEY (`db_name`,`table_name`,`version`);
+
+--
+-- Índices de tabela `pma__userconfig`
+--
+ALTER TABLE `pma__userconfig`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Índices de tabela `pma__usergroups`
+--
+ALTER TABLE `pma__usergroups`
+  ADD PRIMARY KEY (`usergroup`,`tab`,`allowed`);
+
+--
+-- Índices de tabela `pma__users`
+--
+ALTER TABLE `pma__users`
+  ADD PRIMARY KEY (`username`,`usergroup`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `pma__bookmark`
+--
+ALTER TABLE `pma__bookmark`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `pma__column_info`
+--
+ALTER TABLE `pma__column_info`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `pma__export_templates`
+--
+ALTER TABLE `pma__export_templates`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `pma__history`
+--
+ALTER TABLE `pma__history`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `pma__pdf_pages`
+--
+ALTER TABLE `pma__pdf_pages`
+  MODIFY `page_nr` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `pma__savedsearches`
+--
+ALTER TABLE `pma__savedsearches`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- Banco de dados: `test`
+--
+CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `test`;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

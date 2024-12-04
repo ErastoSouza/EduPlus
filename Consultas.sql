@@ -1,6 +1,6 @@
 #1
 USE EduPlus;
-SELECT nome, email FROM instrutor;
+SELECT nome, email FROM instrutores;
 
 #2
 USE EduPlus;
@@ -96,7 +96,7 @@ JOIN
 JOIN
     cursoModulos cm ON c.idCurso = cm.idCurso
 JOIN
-    modulo m ON cm.idModulo = m.idModulo
+    modulos m ON cm.idModulo = m.idModulo
 JOIN
     infoAlunos ia ON ca.matricula = ia.matricula AND ia.idModulo = m.idModulo
 GROUP BY
@@ -108,8 +108,8 @@ ORDER BY
     
 #11
 USE EduPlus;
-SELECT cursos.nome AS 'Nome do curso', instrutor.nome AS 'Instrutor responsável'
-FROM cursos INNER JOIN instrutor ON instrutor.matricula = cursos.instrutorResponsavel;
+SELECT cursos.nome AS 'Nome do curso', instrutores.nome AS 'Instrutor responsável'
+FROM cursos INNER JOIN instrutores ON instrutores.matricula = cursos.instrutorResponsavel;
 
 
 #12
